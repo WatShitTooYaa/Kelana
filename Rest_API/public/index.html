@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px 0;
+            width: 100%;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Auth Test</h1>
+        <h2>Register</h2>
+        <input type="email" id="registerEmail" placeholder="Enter Email">
+        <input type="password" id="registerPassword" placeholder="Enter Password">
+        <button onclick="register()">Register</button>
+        <div class="result" id="registerResult"></div>
+
+        <h2>Login</h2>
+        <input type="email" id="loginEmail" placeholder="Enter Email">
+        <input type="password" id="loginPassword" placeholder="Enter Password">
+        <button onclick="login()">Login</button>
+        <div class="result" id="loginResult"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
