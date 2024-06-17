@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auth Test</title>
+    <title>API Test</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -29,6 +29,7 @@
     <div class="container">
         <h1>Auth Test</h1>
         <h2>Register</h2>
+        <input type="text" id="registerUsername" placeholder="Enter Username">
         <input type="email" id="registerEmail" placeholder="Enter Email">
         <input type="password" id="registerPassword" placeholder="Enter Password">
         <button onclick="register()">Register</button>
@@ -39,6 +40,11 @@
         <input type="password" id="loginPassword" placeholder="Enter Password">
         <button onclick="login()">Login</button>
         <div class="result" id="loginResult"></div>
+
+        <h1>Get Recommendations</h1>
+        <input type="text" id="category" placeholder="Enter Category">
+        <button onclick="getRecommendations()">Get Recommendations</button>
+        <div class="result" id="recommendationsResult"></div>
     </div>
 
     <script src="script.js"></script>

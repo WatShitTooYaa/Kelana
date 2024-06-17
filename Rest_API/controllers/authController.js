@@ -2,10 +2,11 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('../config/db');
 
+// Registrasi Pengguna
 const register = async (req, res) => {
   try {
-    const { email, password } = req.body;
-    console.log('Register request received:', { email, password });
+    const { email, password, username } = req.body;
+    console.log('Register request received:', { email, password, username });
 
     const existingUser = await db.collection('users').where('email', '==', email).get();
     if (!existingUser.empty) {
@@ -18,6 +19,7 @@ const register = async (req, res) => {
     const newUser = {
       email,
       password: hashedPassword,
+      username,
       createdAt: new Date().toISOString()
     };
 
@@ -29,6 +31,7 @@ const register = async (req, res) => {
   }
 };
 
+// Login Pengguna
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
