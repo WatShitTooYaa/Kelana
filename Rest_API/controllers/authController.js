@@ -24,7 +24,12 @@ const register = async (req, res) => {
     };
 
     const userRef = await db.collection('users').add(newUser);
-    res.status(201).json({ message: 'User registered successfully', userId: userRef.id });
+    const userId = userRef.id;
+
+    // Update user document with user_id
+    await userRef.update({ user_id: userId });
+
+    res.status(201).json({ message: 'User registered successfully', userId });
   } catch (error) {
     console.error('Error during registration:', error);
     res.status(500).json({ message: 'Internal server error', error });
@@ -43,7 +48,8 @@ const login = async (req, res) => {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    const user = userSnapshot.docs[0].data();
+    const userDoc = userSnapshot.docs[0];
+    const user = userDoc.data();
     console.log('User found:', user);
 
     const isMatch = await bcrypt.compare(password, user.password);
@@ -54,9 +60,15 @@ const login = async (req, res) => {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    const token = jwt.sign({ userId: userSnapshot.docs[0].id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ userId: userDoc.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
     console.log('Token generated:', token);
-    res.json({ message: 'Login successful', token });
+    
+    // Update user document with user_id if it doesn't exist
+    if (!user.user_id) {
+      await userDoc.ref.update({ user_id: userDoc.id });
+    }
+
+    res.json({ message: 'Login successful', token, userId: userDoc.id });
   } catch (error) {
     console.error('Error during login:', error);
     res.status(500).json({ message: 'Internal server error', error });
