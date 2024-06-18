@@ -9,14 +9,12 @@ app.use(express.static('public'));
 
 // Routes
 const authRoutes = require('./routes/authRoutes');
-const userRoutes = require('./routes/userRoutes');
 const recommendationRoutes = require('./routes/recommendationRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
 const tripPlannerRoutes = require('./routes/tripPlannerRoutes');
 const likeRoutes = require('./routes/likeRoutes');
 
 app.use('/auth', authRoutes);
-app.use('/users', userRoutes);
 app.use('/recommendations', recommendationRoutes);
 app.use('/category', categoryRoutes);
 app.use('/tripplanner', tripPlannerRoutes);
