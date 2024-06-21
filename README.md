@@ -10,15 +10,25 @@ Kelana is a mobile application designed to help budget-conscious travelers plan 
 - **API Integration**: Communicate with external APIs using Retrofit and parse JSON data with GSON.
 
 ## Tech Stack
+## Android
 - **Language**: Kotlin
 - **IDE**: Android Studio
 - **APIs**: Google Maps API, Custom Travel API
 - **Libraries**: Retrofit, GSON
 - **Design**: Figma
 
+## Machine Learning
+- **Language**: Python 3.8 or higher
+- **IDE**: Visual Studio Code/Pycharm/Jupyter Notebook or similiar IDE
+- **APIs**: Google Maps API
+- **Libraries**: numpy, pandas, googlemaps, ortools
+
 ## Getting Started
 
 ### Prerequisites
+#### Android
 - Android Studio installed on your machine
 - Google Maps API Key
 - Basic knowledge of Kotlin and Android development
+#### Machine Learning
+- 
