@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px 0;
+            width: 100%;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Auth Test</h1>
+        <h2>Register</h2>
+        <input type="text" id="registerUsername" placeholder="Enter Username">
+        <input type="email" id="registerEmail" placeholder="Enter Email">
+        <input type="password" id="registerPassword" placeholder="Enter Password">
+        <button onclick="register()">Register</button>
+        <div class="result" id="registerResult"></div>
+
+        <h2>Login</h2>
+        <input type="email" id="loginEmail" placeholder="Enter Email">
+        <input type="password" id="loginPassword" placeholder="Enter Password">
+        <button onclick="login()">Login</button>
+        <div class="result" id="loginResult"></div>
+
+        <h1>Get Recommendations</h1>
+        <input type="text" id="category" placeholder="Enter Category">
+        <button onclick="getRecommendations()">Get Recommendations</button>
+        <div class="result" id="recommendationsResult"></div>
+
+        <h1>Get Categories</h1>
+        <button onclick="getCategories()">Get Categories</button>
+        <div class="result" id="categoriesResult"></div>
+
+        <h1>Get Trip Plan</h1>
+        <input type="text" id="city" placeholder="Enter City">
+        <input type="number" id="priceThreshold" placeholder="Enter Price Threshold">
+        <input type="number" id="destinationLimitPerDay" placeholder="Enter Destination Limit Per Day">
+        <input type="number" id="numDays" placeholder="Enter Number of Days">
+        <button onclick="getTripPlan()">Get Trip Plan</button>
+        <div class="result" id="tripPlanResult"></div>
+
+        <h1>Like Tourism</h1>
+        <input type="text" id="placeId" placeholder="Enter Place ID">
+        <button onclick="likeTourism()">Like</button>
+        <div class="result" id="likeResult"></div>
+
+        <h1>Get Liked Tourism</h1>
+        <button onclick="getLikedTourism()">Get Liked Tourism</button>
+        <div class="result" id="likedTourismResult"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
