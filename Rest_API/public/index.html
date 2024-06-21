@@ -3,39 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API Test</title>
+    <title>API Kelana</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            background-color: #DBB5B5;
+            color: #333;
         }
         .container {
-            max-width: 400px;
+            max-width: 600px;
             margin: auto;
+            background-color: #FFF;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #987070;
         }
         input, button {
             padding: 10px;
             margin: 5px 0;
             width: 100%;
+            border: 1px solid #CCC;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #987070;
+            color: #FFF;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #DBB5B5;
+            color: #333;
         }
         .result {
             margin-top: 20px;
             padding: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid #CCC;
+            background-color: #F9F9F9;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Auth Test</h1>
-        <h2>Register</h2>
+        <h1>Register</h1>
         <input type="text" id="registerUsername" placeholder="Enter Username">
         <input type="email" id="registerEmail" placeholder="Enter Email">
         <input type="password" id="registerPassword" placeholder="Enter Password">
         <button onclick="register()">Register</button>
         <div class="result" id="registerResult"></div>
 
-        <h2>Login</h2>
+        <h1>Login</h1>
         <input type="email" id="loginEmail" placeholder="Enter Email">
         <input type="password" id="loginPassword" placeholder="Enter Password">
         <button onclick="login()">Login</button>

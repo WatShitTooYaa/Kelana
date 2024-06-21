@@ -1,6 +1,6 @@
 const apiUrl = 'http://localhost:3000';
 let lastDocId = null;
-let authToken = null; // Token akan disimpan di sini setelah login
+let authToken = null; // Token will be stored here after login
 
 async function register() {
     const email = document.getElementById('registerEmail').value;
@@ -38,8 +38,8 @@ async function login() {
         });
         const result = await response.json();
         if (response.ok) {
-            authToken = result.token; // Simpan token
-            resultDiv.innerHTML = `<p>Login successful: ${result.message}</p>`;
+            authToken = result.token; // Save the token
+            resultDiv.innerHTML = `<p>Login successful: ${result.message}</p><p>Username: ${result.username}</p><p>Email: ${result.email}</p>`;
         } else {
             resultDiv.innerHTML = `<p>Error: ${result.message}</p>`;
         }
@@ -58,7 +58,13 @@ async function getRecommendations() {
             url += `&startAfter=${lastDocId}`;
         }
 
-        const response = await fetch(url);
+        const response = await fetch(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${authToken}`
+            }
+        });
+
         const result = await response.json();
         if (response.ok) {
             lastDocId = result[result.length - 1]?.id || null; // Store the last document ID
@@ -75,7 +81,11 @@ async function getCategories() {
     const resultDiv = document.getElementById('categoriesResult');
 
     try {
-        const response = await fetch(`${apiUrl}/category`);
+        const response = await fetch(`${apiUrl}/category`, {
+            headers: {
+                'Authorization': `Bearer ${authToken}`
+            }
+        });
         const result = await response.json();
         if (response.ok) {
             resultDiv.innerHTML = `<pre>${JSON.stringify(result, null, 2)}</pre>`;
@@ -95,17 +105,21 @@ async function getTripPlan() {
     const resultDiv = document.getElementById('tripPlanResult');
 
     try {
-        const response = await fetch(`${apiUrl}/tripplanner?city=${city}&priceThreshold=${priceThreshold}&destinationLimitPerDay=${destinationLimitPerDay}&numDays=${numDays}`);
-        const text = await response.text(); // Ambil respons sebagai teks mentah
-        console.log(text); // Log respons mentah untuk debugging
-        const result = JSON.parse(text); // Parse teks mentah sebagai JSON
+        const response = await fetch(`${apiUrl}/tripplanner?city=${city}&priceThreshold=${priceThreshold}&destinationLimitPerDay=${destinationLimitPerDay}&numDays=${numDays}`, {
+            headers: {
+                'Authorization': `Bearer ${authToken}`
+            }
+        });
+        const text = await response.text(); // Get the response as raw text
+        console.log(text); // Log the raw response for debugging
+        const result = JSON.parse(text); // Parse the raw text as JSON
         if (response.ok) {
             resultDiv.innerHTML = `<pre>${JSON.stringify(result, null, 2)}</pre>`;
         } else {
             resultDiv.innerHTML = `<p>Error: ${result.message}</p>`;
         }
     } catch (error) {
-        console.error('Error fetching trip plan:', error); // Log error untuk debugging
+        console.error('Error fetching trip plan:', error); // Log error for debugging
         resultDiv.innerHTML = `<p>Error: ${error.message}</p>`;
     }
 }

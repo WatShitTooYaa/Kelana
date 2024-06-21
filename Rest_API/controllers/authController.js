@@ -68,7 +68,12 @@ const login = async (req, res) => {
       await userDoc.ref.update({ user_id: userDoc.id });
     }
 
-    res.json({ message: 'Login successful', token, userId: userDoc.id });
+    res.json({ 
+      message: 'Login successful', 
+      token, 
+      username: user.username,
+      email: user.email
+    });
   } catch (error) {
     console.error('Error during login:', error);
     res.status(500).json({ message: 'Internal server error', error });

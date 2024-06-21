@@ -24,6 +24,10 @@ async function createDataModel(city, price, destinationLimitPerDay, numDays) {
         distanceMatrix[sourceIndex][destIndex] = Distance;
     });
 
+    // Remove the city name from the end of each place name
+    const cityRegex = new RegExp(`\\s*${city}$`, 'i');
+    const cleanedPlaceNames = uniqueDestinations.map(dest => dest.replace(cityRegex, ''));
+
     return {
         distanceMatrix,
         prices: tourismData.map(item => item.Price),
@@ -33,7 +37,10 @@ async function createDataModel(city, price, destinationLimitPerDay, numDays) {
         numDays: numDays,
         numVehicles: 1,
         depot: 0,
-        placeNames: uniqueDestinations
+        placeNames: cleanedPlaceNames,
+        photo_url: tourismData.map(item => item.Photo_URL),
+        lat: tourismData.map(item => item.Lat),
+        long: tourismData.map(item => item.Long)
     };
 }
 
@@ -75,7 +82,6 @@ async function generateTourPlan(req, res) {
         const numDestinations = totalRoute.length - 1;
 
         const allDaysData = [];
-        let totalDistance = 0;
         let totalPrice = hotelPricePerNight * data.numDays;
 
         for (let day = 0; day < data.numDays; day++) {
@@ -90,7 +96,6 @@ async function generateTourPlan(req, res) {
                 stops: []
             };
 
-            let dayDistance = 0;
             let dayPrice = 0;
 
             for (let i = 0; i < dayRoute.length - 1; i++) {
@@ -98,11 +103,10 @@ async function generateTourPlan(req, res) {
                 const toNode = dayRoute[i + 1];
                 const destinationName = data.placeNames[fromNode];
                 const destinationPrice = data.prices[fromNode];
+                const destinationPhoto_URL = data.photo_url[fromNode];
+                const destinationLat = data.lat[fromNode];
+                const destinationLong = data.long[fromNode];
 
-                const arcDistance = data.distanceMatrix[fromNode][toNode];
-                if (arcDistance !== undefined) {
-                    dayDistance += arcDistance;
-                }
                 if (destinationPrice !== undefined) {
                     dayPrice += destinationPrice;
                 }
@@ -114,36 +118,31 @@ async function generateTourPlan(req, res) {
                 dayData.stops.push({
                     name: destinationName,
                     price: destinationPrice,
-                    distance: arcDistance
+                    photo_url: destinationPhoto_URL,
+                    lat: destinationLat,
+                    long: destinationLong
                 });
 
                 totalPrice += destinationPrice;
             }
 
-            if (dayRoute.length > 0) {
-                dayDistance += data.distanceMatrix[dayRoute[dayRoute.length - 1]][0];
-            }
-
-            dayData.total_distance = dayDistance;
             dayData.total_price = dayPrice;
 
             allDaysData.push(dayData);
-            totalDistance += dayDistance;
         }
 
         const finalResult = {
-            total_distance: totalDistance,
             total_price: totalPrice,
             routes: allDaysData,
             selected_hotel: selectedHotel.name,
             hotel_price_per_night: hotelPricePerNight
         };
 
-        // Periksa apakah ada nilai undefined dan ganti dengan null atau 0
+        // Clean up data by replacing undefined values with null or 0
         function cleanData(obj) {
             for (const key in obj) {
                 if (obj[key] === undefined) {
-                    obj[key] = null; // atau obj[key] = 0 jika sesuai konteks
+                    obj[key] = null; // or obj[key] = 0 if appropriate
                 } else if (typeof obj[key] === 'object' && obj[key] !== null) {
                     cleanData(obj[key]);
                 }
