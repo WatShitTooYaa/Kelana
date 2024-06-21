@@ -37,8 +37,8 @@ Kelana is a mobile application designed to help budget-conscious travelers plan 
 - Familiar with numpy and pandas library
 - Basic Knowlegde about Natural Language Processing and Embedding Vector
 
-### Setting up
-#### Machine Learning
+### Machine Learning
+#### Set up environment
 - create folder for the project, then setting up the virtual environment (VS Code, Pycharm, etc) or setting the kernel (Jupyter Notebook)
   ```
   python -m venv venv
@@ -49,4 +49,27 @@ Kelana is a mobile application designed to help budget-conscious travelers plan 
   ```
   pip install -r requirements.txt
   ```
+#### Data Preparation
+ - download indonesia_tourism.xlsx as main dataset
+ - download review_scraping.ipynd to scrap review
+ - download distance_duration_matrix.ipynb to scrap distance between destination
+ - download hotel_scrap.ipynb to scrap hotel data
 
+### Data Scraping
+- run all the ipynb file, if prefer to .py file then copy it one by one to .py file, or upload .ipynb to Google Colab, then download as .py file
+- (optional) rename the file if wanted by changing the file name in this similar line of code
+  ```
+  df_duration.to_excel("excel-file-name.xlsx", sheet_name='Duration Matrix', index=False)
+  ```
+ - or preferably using .csv file
+  ```
+  df_duration.to_csv("excel-file-name.csv", sheet_name='Duration Matrix', index=False)
+  ```
+### Similarity Prediction
+- download similarity_destination.ipynb
+- run all the code
+- the result will be excel with similarity score for each destination
+### Trip Planner
+- download trip_planner.ipynb
+- run all the code
+- the result will be JSON contain each day trip plan
