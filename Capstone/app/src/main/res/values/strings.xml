@@ -2,16 +2,45 @@
     <string name="app_name">Kelana</string>
     <string name="Login">Login</string>
     <string name="login">login</string>
+    <string name="Logout">Logout</string>
+    <string name="logout">logout</string>
     <string name="register">register</string>
     <string name="Register">Register</string>
     <string name="username">Username</string>
     <string name="email">Email</string>
+    <string name="phone">081586516332</string>
     <string name="password">Password</string>
+    <string name="profile">Profile</string>
     <string name="or">or</string>
+    <string name="next">Next</string>
+
+    <string name="searchbar_hint">cari</string>
 
     <string name="google_login">google_login</string>
     <string name="google_register">google_register</string>
     <string name="google_login_text">Login with Google Account</string>
     <string name="google_register_text">Register with Google Account</string>
     <string name="google">google</string>
+
+    <string name="title_preference">Apa minat wisata Anda?</string>
+    <string name="sub_title_preference">Pilih 5 minat untuk menyesuaikan sajian beranda</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_stack">Bundle</string>
+
+    <string name="nama_wisata">Pantai</string>
+    <string name="hint_price_bundle">Rp.0,-</string>
+    <string name="title_bundle">Masukkan budget anda untuk menyesuaikan paket</string>
+    <string name="description">Description</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_maps">MapsActivity</string>
+
+    <string-array name="sort_options">
+        <item>Name</item>
+        <item>Distance</item>
+    </string-array>
+
 </resources>

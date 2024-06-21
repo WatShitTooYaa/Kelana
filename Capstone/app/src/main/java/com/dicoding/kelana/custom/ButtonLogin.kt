@@ -45,6 +45,7 @@ class ButtonLogin : AppCompatButton {
         text = when (state) {
             "login" ->  ContextCompat.getString(context, R.string.login)
             "register" -> ContextCompat.getString(context, R.string.register)
+            "logout" -> ContextCompat.getString(context, R.string.logout)
             "google_login" -> ContextCompat.getString(context, R.string.google_login_text  )
             "google_register" -> ContextCompat.getString(context, R.string.google_register_text  )
             else -> ""
