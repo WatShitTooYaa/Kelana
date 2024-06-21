@@ -21,7 +21,7 @@ Kelana is a mobile application designed to help budget-conscious travelers plan 
 - **Language**: Python 3.8 or higher
 - **IDE**: Visual Studio Code/Pycharm/Jupyter Notebook or similiar IDE
 - **APIs**: Google Maps API
-- **Libraries**: numpy, pandas, googlemaps, ortools
+- **Libraries**: numpy, pandas, googlemaps, ortools, tensorflow, tokenizer
 
 ## Getting Started
 
@@ -31,4 +31,22 @@ Kelana is a mobile application designed to help budget-conscious travelers plan 
 - Google Maps API Key
 - Basic knowledge of Kotlin and Android development
 #### Machine Learning
-- 
+- Installed Python Intepreter
+- Installed Python supported IDE
+- Python intermediate proficiency
+- Familiar with numpy and pandas library
+- Basic Knowlegde about Natural Language Processing and Embedding Vector
+
+### Setting up
+#### Machine Learning
+- create folder for the project, then setting up the virtual environment (VS Code, Pycharm, etc) or setting the kernel (Jupyter Notebook)
+  ```
+  python -m venv venv
+  .\venv\Scripts\activate
+  ```
+- download requirements.txt, placed in same folder of the project
+- install all requirements by run this command
+  ```
+  pip install -r requirements.txt
+  ```
+
